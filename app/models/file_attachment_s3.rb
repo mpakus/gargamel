@@ -10,8 +10,8 @@ class FileAttachmentS3 < ActiveRecord::Base
                       :endpoint => "https://s3-eu-west-1.amazonaws.com
 "
                     },
-                    :s3_bucket => self.s3_config['bucket'],                    
-                    :s3_host_alias => self.s3_config['s3_host_alias'],
+                    :s3_bucket => "eshopfiles",                    
+                   #:s3_host_alias => self.s3_config['s3_host_alias'],
 		    :s3_permissions => :public_read,
                     :s3_protocol => 'http',
                     :s3_options => {
