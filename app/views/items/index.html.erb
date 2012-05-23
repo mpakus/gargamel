@@ -1,5 +1,4 @@
-<h1>Listing items</h1>
-
+<h1>Files</h1>
 <table>
   <tr>
     <th>Name</th>
@@ -9,19 +8,13 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @items.each do |item| %>
   <tr>
-    <td><%= item.name %></td>
+    <td><%= link_to item.name, item %></td>
     <td><%= item.price %></td>
-    <td><%= item.user_id %></td>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= item.user.email %></td>
   </tr>
 <% end %>
 </table>
+<br/>
 
-<br />
-
-<%= link_to 'New Item', new_item_path %>

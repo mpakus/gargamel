@@ -1,11 +1,18 @@
 Gargamel::Application.routes.draw do
-  resources :items
+  root :to => "home#index"
+
+  resources :items, :only => [:index, :show]
 
   authenticated :user do
-    root :to => 'home#index'
+    # users/items
+    namespace :users do
+      resources :items do
+      end
+    end
   end
-  root :to => "home#index"
+
 
   devise_for :users
   resources :users, :only => [:show, :index]
+
 end

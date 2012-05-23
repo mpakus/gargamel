@@ -4,6 +4,7 @@ gem 'rails', '3.2.3'
 gem 'heroku'
 gem 'pg'
 gem 'thin'
+gem 'paperclip-aws'
 
 gem "devise", ">= 2.1.0"
 gem "cancan", ">= 1.6.7"
