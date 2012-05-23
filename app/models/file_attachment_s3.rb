@@ -3,16 +3,12 @@ class FileAttachmentS3 < ActiveRecord::Base
 
   belongs_to :item
 
-  def self.s3_config
-    @@s3_config ||= YAML.load(ERB.new(File.read("#{Rails.root}/config/s3.yml")).result)[Rails.env]
-  end
-
-
   has_attached_file :data, :storage => :aws, 
 		    :s3_credentials => {
-                      :access_key_id => self.s3_config['access_key_id'],
-                      :secret_access_key => self.s3_config['secret_access_key'],
-                      :endpoint => self.s3_config['endpoint']
+                      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+                      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
+                      :endpoint => "https://s3-eu-west-1.amazonaws.com
+"
                     },
                     :s3_bucket => self.s3_config['bucket'],                    
                     :s3_host_alias => self.s3_config['s3_host_alias'],
