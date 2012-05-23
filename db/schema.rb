@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523200117) do
+ActiveRecord::Schema.define(:version => 20120523211218) do
 
   create_table "file_attachment_s3s", :force => true do |t|
     t.integer  "item_id"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20120523200117) do
     t.string   "name"
     t.float    "price"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "file_attachment_s3_id"
   end
 
   create_table "roles", :force => true do |t|
