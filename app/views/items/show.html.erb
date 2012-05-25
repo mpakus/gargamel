@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="hero-unit">
 
 <p>
   <b>Name:</b>
@@ -7,7 +7,7 @@
 
 <p>
   <b>Price:</b>
-  <%= @item.price %>
+  <%= @item.price %> zł
 </p>
 
 <p>
@@ -16,8 +16,15 @@
 </p>
 
 <p>
-<b>file</b>
-  <%= @item.file.item_id %>
+  <b>Category:</b>
+  <%= @item.category_id %>
 </p>
 
+<p>
+<%= form_tag( @transaction.new_url) do %>
+  <%= transaction_hidden_fields @transaction %>
+  <%= submit_tag 'Zapłać' %>
+<% end %>
+</p>
 <%= link_to 'Back', items_path %>
+</div>

@@ -1,27 +1,17 @@
 <h1>My Files</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th>Price</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @items.each do |item| %>
   <tr>
-    <td><%= item.name %></td>
-    <td><%= item.price %></td>
-    <td><%= item.user_id %></td>
-    <td><%= link_to 'Show', users_item_path(item) %></td>
-    <td><%= link_to 'Edit', edit_users_item_path(item) %></td>
-    <td><%= link_to 'Destroy', users_item_path(item), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to item.name, users_item_path(item) %></td>
+    <td><%= item.price %> zł</td>
   </tr>
 <% end %>
 </table>
-
 <br />
 
-<%= link_to 'New Item', new_users_item_path %>

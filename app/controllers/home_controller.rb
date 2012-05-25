@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @items_last = Item.all(:limit => 4)
+    @categories = Category.all
   end
 end

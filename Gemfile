@@ -6,14 +6,23 @@ gem 'pg'
 gem 'thin'
 gem 'paperclip-aws'
 
+#gem 'payments-pl'
+gem 'payments_pl', :git => "https://github.com/mlitwiniuk/payments-pl.git", :branch => "ruby1.9"
 gem "devise", ">= 2.1.0"
 gem "cancan", ">= 1.6.7"
 gem "rolify", ">= 3.1.0"
 
 gem 'jquery-rails'
 gem "bootstrap-sass", ">= 2.0.3"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 gem "simple_form"
 gem "will_paginate", ">= 3.0.3"
+
+gem 'awesome_nested_set'
+
+gem 'fastercsv' 
+gem 'rails_admin'
 
 
 group :development, :test do

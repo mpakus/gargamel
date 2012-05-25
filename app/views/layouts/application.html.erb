@@ -1,38 +1,91 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Gargamel" %></title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= yield(:head) %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
         <div class="container">
-          <%= render 'layouts/navigation' %>
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="container nav-collapse">
+            <%= render 'layouts/navigation' %>
+          </div><!--/.nav-collapse -->
         </div>
-      </nav>
-    </header>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="row">
+          <% if current_page?(:controller => "home") || current_page?(:controller => "items") && !current_page?(:controller => "users/items")  %>
+          <div class="span3">
+              <div class="well sidebar-nav">
+                <h3>Products</h3>
+                <ul class="nav nav-list">
+                  <li class="nav-header">Last products</li>
+                  <% @items_last.each do |item| %>
+                    <li><%= link_to item.name, item %></li>
+                   <% end %>
+                </ul>
+                <ul class="nav nav-list">
+                  <li class="nav-header">Categories</li>
+                  <% @categories.each do |cat| %>
+                    <li class="parent"><%= link_to cat.name, cat %></li>
+                  <% end %>
+                </ul>
+              </div><!--/.well -->
+            </div><!--/span-->
+            <% end %>
+
+	    <% if current_page?(:controller => "users/items") %>
+            <div class="span3">
+              <div class="well sidebar-nav">
+                <h3>Panel</h3>
+                <ul class="nav nav-list">
+		  <li><%= link_to 'Add product', new_users_item_path %></li>
+                </ul>
+              </div><!--/.well -->
+            </div><!--/span-->
+            <% end %>
+
+
+           <div class="span9">
               <%= yield %>
             </div>
-          </div>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+        </div><!--/row-->
+      </div><!--/content-->
+
+      <footer>
+        <p>&copy; Company 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
   </body>
 </html>

@@ -44,7 +44,7 @@ class Users::ItemsController < ApplicationController
   # POST /items.json
   def create
     #@item = Item.new(params[:item])
-    @item = current_user.items.new(params[:item])
+    @item = current_user.items.create(params[:item])
 
     respond_to do |format|
       if @item.save

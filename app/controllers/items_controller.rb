@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
+  #require 'payments_pl/rails'
+
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
+    @items_last = Item.all(:limit => 4)
+    @categories = Category.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +14,21 @@ class ItemsController < ApplicationController
     end
   end
 
+  def showcategory
+    @items = Item.where("category_id = ?", params[:id])
+    @c = Category.find(params[:id])
+    
+    render :template => "items/index.html"
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show
     @item = Item.find(params[:id])
+    @price = "123"#@item.price #TODO
+    @name = "werfv"#@item.name
+
+    @transaction = PaymentsPl['bank'].new_transaction(:amount => @price, :desc => @name, :client_ip => request.remote_addr, :js => '0')
 
     respond_to do |format|
       format.html # show.html.erb

@@ -2,7 +2,7 @@ class Users::ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    #@items = current_user.items
+    @items = current_user.items
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,6 +27,7 @@ class Users::ItemsController < ApplicationController
   def new
     #@item = Item.new
     @item = current_user.items.new
+    @file = FileAttachmentS3.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +45,7 @@ class Users::ItemsController < ApplicationController
   # POST /items.json
   def create
     #@item = Item.new(params[:item])
-    @item = current_user.items.new(params[:item])
+    @item = current_user.items.create(params[:item])
 
     respond_to do |format|
       if @item.save

@@ -1,9 +1,17 @@
-<%= simple_form_for([:users,@item]) do |f| %>
+<%= simple_form_for([:users,@item], :html => { :multipart => true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :price %>
+  </div>
+  
+  <div class='form-inputs'>
+    Category<br> <%= f.select :category_id, nested_set_options(Category, @category) {|i| "#{'-' * i.level} #{i.name}" } %>
+  </div>
+
+  <div class="form_inputs">
+    File <br><%= f.file_field :file %>
   </div>
 
   <div class="form-actions">
