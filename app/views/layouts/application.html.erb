@@ -38,38 +38,13 @@
     <div class="container">
       <div class="content">
         <div class="row">
-          <% if current_page?(:controller => "home") || current_page?(:controller => "items") && !current_page?(:controller => "users/items")  %>
-          <div class="span3">
-              <div class="well sidebar-nav">
-                <h3>Products</h3>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Last products</li>
-                  <% @items_last.each do |item| %>
-                    <li><%= link_to item.name, item %></li>
-                   <% end %>
-                </ul>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Categories</li>
-                  <% @categories.each do |cat| %>
-                    <li class="parent"><%= link_to cat.name, cat %></li>
-                  <% end %>
-                </ul>
-              </div><!--/.well -->
-            </div><!--/span-->
+        <% if (controller.controller_name == "home" || controller.controller_name == "items") && controller.controller_path != "users/items" %>
+              <%= render 'layouts/sidebar' %>
             <% end %>
 
-	    <% if current_page?(:controller => "users/items") %>
-            <div class="span3">
-              <div class="well sidebar-nav">
-                <h3>Panel</h3>
-                <ul class="nav nav-list">
-		  <li><%= link_to 'Add product', new_users_item_path %></li>
-                </ul>
-              </div><!--/.well -->
-            </div><!--/span-->
+	    <% if controller.controller_path == "users/items" || controller.controller_path == "users/payments" %>
+              <%= render 'layouts/user_sidebar' %>
             <% end %>
-
-
            <div class="span9">
               <%= yield %>
             </div>

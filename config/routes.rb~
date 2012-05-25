@@ -1,8 +1,8 @@
 Gargamel::Application.routes.draw do
   
-map.connect '/payments/ok',     :controller => 'payments', :action => 'ok'
-map.connect '/payments/error',  :controller => 'payments', :action => 'error'
-map.connect '/payments/report', :controller => 'payments', :action => 'report'
+  match '/payments/ok',     :controller => 'payments', :action => 'ok'  
+  match '/payments/error',  :controller => 'payments', :action => 'error'
+  match '/payments/report', :controller => 'payments', :action => 'report'
 
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -10,19 +10,19 @@ map.connect '/payments/report', :controller => 'payments', :action => 'report'
   root :to => "home#index"
   resources :items, :only => [:index, :show]
 
-  match '/category/:id/' => "items#showcategory"
+  match '/category/:id/', :controller => 'items', :action => 'showcategory'  
 
-  resources :category do
-    resources :items, :only => [:index, :show]
-  end
+  #resources :category do
+    #resources :items, :only => [:index, :show]
+  #end
 
   authenticated :user do
     # users/items
     namespace :users do
-      #resources :category do
-        resources :items do
-        end
-      #end
+      resources :items do
+      end
+      resources :items_payments
+      resources :payments
     end
   end
 

@@ -73,3 +73,10 @@ db/*.sqlite3
 
 # vim artifacts
 **.swp
+
+
+#temp
+
+*.*~
+*~
+

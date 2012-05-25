@@ -1,42 +1,25 @@
-class ItemsController < ApplicationController
-  before_filter :sidebar
-
-  def sidebar
-    @categories = Category.all
-    @items_last = Item.all(:limit => 4)
-  end
+class Users::ItemsPaymentsController < ApplicationController
 
   def index
-    @items = Item.all
+    @payments = current_user.payments
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @items }
+      format.json { render json: @payments }
     end
   end
 
-  def showcategory
-    @items = Item.where("category_id = ?", params[:id])
-    @c = Category.find(params[:id])
-    
-    render :template => "items/index.html"
-  end
-
   def show
-    @item = Item.find(params[:id])
-    @price = "123"#@item.price #TODO
-    @name = "werfv"#@item.name
-
-    @transaction = PaymentsPl['bank'].new_transaction(:amount => @price, :desc => @name, :client_ip => request.remote_addr, :js => '0')
+    @payment = current_user.payments.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @item }
+      format.json { render json: @payment }
     end
   end
 
   def new
-    @item = Item.new
+    @payment = current_user.payments.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,14 +27,17 @@ class ItemsController < ApplicationController
     end
   end
 
-
+#TODO !!!!!!
   def edit
-    @item = Item.find(params[:id])
+    #@item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
   end
 
-
+  # POST /items
+  # POST /items.json
   def create
-    @item = Item.new(params[:item])
+    #@item = Item.new(params[:item])
+    @item = current_user.items.create(params[:item])
 
     respond_to do |format|
       if @item.save
@@ -65,7 +51,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
+    #@item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
@@ -78,9 +65,8 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def destroy
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
     @item.destroy
 
     respond_to do |format|
@@ -88,4 +74,5 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

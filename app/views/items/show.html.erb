@@ -23,7 +23,7 @@
 <p>
 <%= form_tag( @transaction.new_url) do %>
   <%= transaction_hidden_fields @transaction %>
-  <%= submit_tag 'Zapłać' %>
+  <%= submit_tag 'Zapłać', :class =>'btn btn-primary btn-large' %>
 <% end %>
 </p>
 <%= link_to 'Back', items_path %>

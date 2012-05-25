@@ -10,7 +10,7 @@ Gargamel::Application.routes.draw do
   root :to => "home#index"
   resources :items, :only => [:index, :show]
 
-  match '/category/:id/' => "items#showcategory"
+  match '/category/:id/', :controller => 'items', :action => 'showcategory'  
 
   resources :category do
     resources :items, :only => [:index, :show]
@@ -19,10 +19,10 @@ Gargamel::Application.routes.draw do
   authenticated :user do
     # users/items
     namespace :users do
-      #resources :category do
-        resources :items do
-        end
-      #end
+      resources :items do
+      end
+      resources :items_payments
+      resources :payments
     end
   end
 
