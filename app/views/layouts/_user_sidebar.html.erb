@@ -3,11 +3,11 @@
                 <h3>Panel</h3>
                 <ul class="nav nav-list">
                   <li class="nav-header">My sale</li>
-		  <li><%= link_to 'Add product', new_users_item_path %></li>
-                  <li><%= link_to 'My products', users_items_path %></li>
-                  <li><%= link_to 'Payments', users_items_payments_path %></li>
+		  <li class="<%= 'active' if (controller.controller_path=='users/items' && controller.action_name == 'new') %>" ><%= link_to 'Add product', new_users_item_path %></li>
+                  <li class="<%= 'active' if (controller.controller_path=='users/items' && controller.action_name == 'index') %>"><%= link_to 'My products', users_items_path %></li>
+                  <li class="<%= 'active' if (controller.controller_path=='users/items_payments' && controller.action_name == 'index') %>"><%= link_to 'Payments', users_items_payments_path %></li>
                   <li class="nav-header">My shopping</li>
-		  <li><%= link_to 'Payments', users_payments_path %></li>
+		  <li class="<%= 'active' if (controller.controller_path=='users/payments' && controller.action_name == 'index') %>"><%= link_to 'Payments', users_payments_path %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
