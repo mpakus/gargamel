@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<div class="hero-unit">
+<p>
+  <b>Title:</b>
+  <%= @news.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @news.content %>
+</p>
+</div>
+
+<div class="hero-unit">
+<h3>Comments</h3>
+  <%= comments_for @news %>
+</div>
+<!--<%= link_to 'Edit', edit_news_path(@news) %> -->
+<%= link_to 'Back', news_index_path %>

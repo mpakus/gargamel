@@ -1,0 +1,17 @@
+<h1>Latest news</h1>
+<table>
+<% @news.each do |news| %>
+  <tr>
+    <td><%= link_to news.title, news %></td>
+ <!--    <td><%= link_to 'Show', news %></td>
+    <td><%= link_to 'Edit', edit_news_path(news) %></td>
+    <td><%= link_to 'Destroy', news, confirm: 'Are you sure?', method: :delete %></td> -->
+  </tr>
+  <tr>
+    <td><%= news.content %></td>
+  </tr>
+<% end %>
+</table>
+<br/>
+<!--
+<%= link_to 'New News', new_news_path %> -->
