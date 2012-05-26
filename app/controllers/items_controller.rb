@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @price = "123"#@item.price #TODO
     @name = "werfv"#@item.name
+    
 
     @transaction = PaymentsPl['bank'].new_transaction(:amount => @price, :desc => @name, :client_ip => request.remote_addr, :js => '0')
 

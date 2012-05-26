@@ -155,6 +155,10 @@ GEM
     multi_xml (0.5.1)
     netrc (0.7.1)
     nokogiri (1.5.2)
+    opinio (0.5)
+      jquery-rails
+      kaminari
+      rails (~> 3)
     orm_adapter (0.0.7)
     paperclip (3.0.4)
       activemodel (>= 3.0.0)
@@ -283,7 +287,9 @@ DEPENDENCIES
   fastercsv
   heroku
   jquery-rails
+  kaminari
   launchy (>= 2.1.0)
+  opinio
   paperclip-aws
   payments_pl!
   pg

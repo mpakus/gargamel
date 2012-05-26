@@ -11,13 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525102752) do
-
-  create_table "admins", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20120526102541) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
@@ -25,6 +19,15 @@ ActiveRecord::Schema.define(:version => 20120525102752) do
     t.integer "lft"
     t.integer "rgt"
     t.integer "depth"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "owner_id",         :null => false
+    t.integer  "commentable_id",   :null => false
+    t.string   "commentable_type", :null => false
+    t.text     "body",             :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "file_attachment_s3s", :force => true do |t|
@@ -37,14 +40,20 @@ ActiveRecord::Schema.define(:version => 20120525102752) do
     t.string   "name"
     t.float    "price"
     t.integer  "user_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.integer  "file_attachment_s3_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.integer  "category_id"
+  end
+
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "payments", :force => true do |t|

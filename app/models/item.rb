@@ -1,10 +1,13 @@
 class Item < ActiveRecord::Base
-  attr_accessible :name, :price, :user_id, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :category_id
+  opinio_subjectum
+ attr_accessible :name, :price, :user_id, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :category_id
 
   belongs_to :user
   belongs_to :category
 
   has_many :payments
+
+  has_many :comments, :as => :commentable
 
   validates_presence_of :name
   validates_presence_of :price

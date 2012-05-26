@@ -6,6 +6,8 @@ gem 'pg'
 gem 'thin'
 gem 'paperclip-aws'
 
+gem "opinio"
+
 #gem 'payments-pl'
 gem 'payments_pl', :git => "https://github.com/mlitwiniuk/payments-pl.git", :branch => "ruby1.9"
 gem "devise", ">= 2.1.0"
@@ -45,3 +47,5 @@ group :test do
   gem "launchy", ">= 2.1.0"
 end
 
+
+gem "kaminari"

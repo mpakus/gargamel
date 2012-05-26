@@ -4,6 +4,10 @@ class Item < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
+  has_many :payments
+
+  has_many :comments, :as => :commentable
+
   validates_presence_of :name
   validates_presence_of :price
   validates_presence_of :user
